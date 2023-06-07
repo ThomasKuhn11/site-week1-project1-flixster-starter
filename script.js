@@ -108,6 +108,12 @@ function generateCards(movieObject) {
     document.body.insertBefore(image, averageContainer)
 
 
+    let name = document.createElement('div')
+    rating.classList.add('name');
+    name.innerText = movieObject.original_title;
+    document.body.insertBefore(name, averageContainer.nextSibling);
+
+
 }
 
 generateCards(firstMovie);
