@@ -101,17 +101,24 @@ function generateCards(movieObject) {
     averageContainer.classList.add('average')
     averageContainer.appendChild(star);
     averageContainer.appendChild(rating)
-    document.body.appendChild(averageContainer)
+    //document.body.appendChild(averageContainer)
 
     let image = document.createElement('img');
     image.src = "https://image.tmdb.org/t/p/w342" + movieObject.poster_path
-    document.body.insertBefore(image, averageContainer)
+    //document.body.insertBefore(image, averageContainer)
 
 
     let name = document.createElement('div')
     rating.classList.add('name');
     name.innerText = movieObject.original_title;
-    document.body.insertBefore(name, averageContainer.nextSibling);
+    //document.body.insertBefore(name, averageContainer.nextSibling);
+
+    let movie = document.createElement('section')
+    movie.classList.add('movie')
+    movie.appendChild(image);
+    movie.appendChild(averageContainer);
+    movie.appendChild(name);
+    document.body.appendChild(movie);
 
 
 }
