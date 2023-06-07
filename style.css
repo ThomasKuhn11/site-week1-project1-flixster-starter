@@ -1,1 +1,43 @@
-
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    text-transform: uppercase;
+    text-align: center;
+    margin: 20px 0;
+  
+    background-color: red;
+  }
+  
+  #form {
+    text-align: center;
+  }
+  
+  
+  .gif-container {
+    height: 40vh;
+    width: 80%;
+    background: red;
+    margin: 0 auto;
+  
+  }
+  
+  button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  
