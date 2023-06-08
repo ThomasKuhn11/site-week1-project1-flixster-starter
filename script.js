@@ -82,6 +82,8 @@ console.log(firstMovie)
 
 function generateCards(movieObject) {
 
+    //we are creating html elements with properties
+
     //create star
     let star = document.createElement('span');
     star.classList.add('star')
@@ -121,6 +123,27 @@ function generateCards(movieObject) {
     document.body.appendChild(movie);
 
 
+    movie.style.display = 'inline-block';
+    movie.style.width = '30%';
+    movie.style.padding = '10px';
+    movie.style.boxSizing = 'border-box';
+    movie.style.textAlign = 'center';
+
+    movie.style.backgroundColor = 'grey';
+
+    movie.style.marginLeft = '45px'; // Adjust the margin value as needed
+
+
+
+
 }
 
-generateCards(firstMovie);
+//generateCards(firstMovie);
+
+for (let i = 0; i < 3; i++ ) {
+    generateCards(fakeData.results[i]);
+
+}
+
+
+//create for loop to add each movie using logic above
