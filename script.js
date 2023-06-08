@@ -1,4 +1,126 @@
 
+
+let apiToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNDExYzRmMjJkN2VmMzRhNWU1MmQwMGNlZjgzZDBlMSIsInN1YiI6IjY0ODIwNDg5YmYzMWYyMDExZDQyMTE0YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qDBwCjX6tmtAwMEnJQ5J-5-jMP5JW-9reCkDqiD-n-s";
+
+const url = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1'
+
+const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNDExYzRmMjJkN2VmMzRhNWU1MmQwMGNlZjgzZDBlMSIsInN1YiI6IjY0ODIwNDg5YmYzMWYyMDExZDQyMTE0YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qDBwCjX6tmtAwMEnJQ5J-5-jMP5JW-9reCkDqiD-n-s'
+    }
+  };
+  
+
+//eventHandler for when load more is clicked
+
+//api have pages
+
+let currentPage = 0
+
+
+// async function logJSONData() {
+//     const response = await fetch(url, options);
+//     const jsonData = await response.json();
+//     console.log(jsonData);
+
+//     for (let i = 0; i < data.results.length; i++ ) {
+//         generateCards(data.results[i]);
+            
+//     }
+// }
+
+
+//function getMovies() {
+    fetch(url, options)
+    .then(response => {return response.json()})
+    .then(response => {
+    console.log(response)
+    return response
+    })
+    .then(data => {
+    for (let i = 0; i < data.results.length; i++ ) {
+        generateCards(data.results[i]);
+    
+    }
+}
+)
+
+
+//}
+
+
+
+
+function generateCards(movieObject) {
+
+    //we are creating html elements with properties
+
+    //create star
+    let star = document.createElement('span');
+    star.classList.add('star')
+    let starContent = document.createTextNode('⭐️');
+    star.appendChild(starContent);
+    
+
+    //create rating
+    let rating = document.createElement('span');
+    let ratingContent = document.createTextNode(movieObject.vote_average);
+    rating.classList.add('rating')
+    rating.appendChild(ratingContent);
+    
+
+    //create average container
+    let averageContainer = document.createElement('div');
+    averageContainer.classList.add('average')
+    averageContainer.appendChild(star);
+    averageContainer.appendChild(rating)
+    //document.body.appendChild(averageContainer)
+
+    let image = document.createElement('img');
+    image.src = "https://image.tmdb.org/t/p/w342" + movieObject.poster_path
+    //document.body.insertBefore(image, averageContainer)
+
+
+    let name = document.createElement('div')
+    rating.classList.add('name');
+    name.innerText = movieObject.original_title;
+    //document.body.insertBefore(name, averageContainer.nextSibling);
+
+    let movie = document.createElement('section')
+    movie.classList.add('movie')
+    movie.appendChild(image);
+    movie.appendChild(averageContainer);
+    movie.appendChild(name);
+    document.body.appendChild(movie);
+
+
+    movie.style.display = 'inline-block';
+    movie.style.width = '30%';
+    movie.style.padding = '10px';
+    movie.style.boxSizing = 'border-box';
+    movie.style.textAlign = 'center';
+
+    movie.style.backgroundColor = 'grey';
+
+    movie.style.marginLeft = '45px'; // Adjust the margin value as needed
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/*
+
 let fakeData = 
 {
     "dates": {
@@ -75,75 +197,23 @@ let fakeData =
     "total_results": 1951
 }
 
+*/
 
+/*
 let firstMovie = fakeData.results[0]
 
 console.log(firstMovie)
+*/
 
-function generateCards(movieObject) {
-
-    //we are creating html elements with properties
-
-    //create star
-    let star = document.createElement('span');
-    star.classList.add('star')
-    let starContent = document.createTextNode('⭐️');
-    star.appendChild(starContent);
-    
-
-    //create rating
-    let rating = document.createElement('span');
-    let ratingContent = document.createTextNode(movieObject.vote_average);
-    rating.classList.add('rating')
-    rating.appendChild(ratingContent);
-    
-
-    //create average container
-    let averageContainer = document.createElement('div');
-    averageContainer.classList.add('average')
-    averageContainer.appendChild(star);
-    averageContainer.appendChild(rating)
-    //document.body.appendChild(averageContainer)
-
-    let image = document.createElement('img');
-    image.src = "https://image.tmdb.org/t/p/w342" + movieObject.poster_path
-    //document.body.insertBefore(image, averageContainer)
-
-
-    let name = document.createElement('div')
-    rating.classList.add('name');
-    name.innerText = movieObject.original_title;
-    //document.body.insertBefore(name, averageContainer.nextSibling);
-
-    let movie = document.createElement('section')
-    movie.classList.add('movie')
-    movie.appendChild(image);
-    movie.appendChild(averageContainer);
-    movie.appendChild(name);
-    document.body.appendChild(movie);
-
-
-    movie.style.display = 'inline-block';
-    movie.style.width = '30%';
-    movie.style.padding = '10px';
-    movie.style.boxSizing = 'border-box';
-    movie.style.textAlign = 'center';
-
-    movie.style.backgroundColor = 'grey';
-
-    movie.style.marginLeft = '45px'; // Adjust the margin value as needed
-
-
-
-
-}
 
 //generateCards(firstMovie);
 
+
+/*
 for (let i = 0; i < 3; i++ ) {
     generateCards(fakeData.results[i]);
 
 }
 
-
+*/
 //create for loop to add each movie using logic above
