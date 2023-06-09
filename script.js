@@ -15,7 +15,7 @@ const options = {
 
   let searchButton = document.getElementById('search');
 
-  let searchInput = document.getElementById('searchInput')
+  let searchInput = document.getElementById('search-input')
 
   searchButton.addEventListener('click', function(event) {
 
@@ -84,7 +84,7 @@ function getMovies(pageNum) {
 )
 }
  
-  const loadButton = document.getElementById('loadButton');
+  const loadButton = document.getElementById('load-more-movies-btn');
   
 
   loadButton.addEventListener('click', function() {
@@ -92,7 +92,7 @@ function getMovies(pageNum) {
   });
 
 
-const mainContainer = document.getElementById("movies")
+const mainContainer = document.getElementById("movies-grid")
 
 function generateCards(movieObject) {
 
