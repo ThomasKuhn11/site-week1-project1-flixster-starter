@@ -15,6 +15,60 @@ const options = {
 
 
 
+  let searchButton = document.getElementById('search');
+
+  let searchInput = document.getElementById('searchInput')
+
+  searchButton.addEventListener('click', function(event) {
+
+    //alert(searchInput.value)
+
+    mainContainer.innerHTML = "";
+    
+
+    if (searchInput.value.length != 0) {
+        searchMovies();
+    }
+    else {
+        getMovies();
+    }
+    
+    
+  });
+
+
+
+  function searchMovies() {
+        //URL FOR SEARC
+        const options1 = {
+            method: 'GET',
+            headers: {
+              accept: 'application/json',
+              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNDExYzRmMjJkN2VmMzRhNWU1MmQwMGNlZjgzZDBlMSIsInN1YiI6IjY0ODIwNDg5YmYzMWYyMDExZDQyMTE0YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qDBwCjX6tmtAwMEnJQ5J-5-jMP5JW-9reCkDqiD-n-s'
+            }
+          };
+
+          //'https://api.themoviedb.org/3/search/movie?query=SPIDERMAN&include_adult=false&language=en-US&page=1', options)
+          dinamicURL = 'https://api.themoviedb.org/3/search/movie?query='+ searchInput.value +'&include_adult=false&language=en-US&page=1'
+          console.log(searchInput.value)
+          fetch(dinamicURL, options1)
+            .then(response => response.json())
+            .then(data => {
+                    
+                   for (let i = 0; i < data.results.length; i++ ) {
+                    generateCards(data.results[i]);   
+                   }
+      
+            
+            }) /* call the generate cards with parameter of what you found*/
+
+  }
+
+
+
+
+
+
 
 //api have pages
 
@@ -47,19 +101,45 @@ function getMovies(pageNum) {
 //create event lisener so that every click we call we will call getMovies again for the next page
 
   
-  const button = document.getElementById('loadButton');
+  const loadButton = document.getElementById('loadButton');
   
 
-  button.addEventListener('click', function() {
+  loadButton.addEventListener('click', function() {
     getMovies(++currentPage);
   });
 
 
 
 
-//create apiPage variable to keep track of page
 
 
+// const searchButton = document.getElementById('search')
+// searchButton.addEventListener('click', function() {
+//     let url = 'https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1'
+//     let urlSearch = 'https://api.themoviedb.org/3/search/' + movie + '?include_adult=false&language=en-US&page=1'
+//     fetch(, options)
+//         .then(response => response.json())
+//         .then(response => console.log(response))
+//         .catch(err => console.error(err));
+
+
+// })
+
+// function searchMovie() {
+//     const options = {
+//         method: 'GET',
+//         headers: {
+//           accept: 'application/json',
+//           Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNDExYzRmMjJkN2VmMzRhNWU1MmQwMGNlZjgzZDBlMSIsInN1YiI6IjY0ODIwNDg5YmYzMWYyMDExZDQyMTE0YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qDBwCjX6tmtAwMEnJQ5J-5-jMP5JW-9reCkDqiD-n-s'
+//         }
+//       };
+      
+// }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const mainContainer = document.getElementById("movies")
 
 function generateCards(movieObject) {
 
@@ -103,7 +183,7 @@ function generateCards(movieObject) {
     movie.appendChild(name);
 
 
-    const mainContainer = document.getElementById("movies")
+    //const mainContainer = document.getElementById("movies") //did it outside
     mainContainer.appendChild(movie);
 
 
