@@ -2,7 +2,7 @@
 
 let apiToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNDExYzRmMjJkN2VmMzRhNWU1MmQwMGNlZjgzZDBlMSIsInN1YiI6IjY0ODIwNDg5YmYzMWYyMDExZDQyMTE0YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qDBwCjX6tmtAwMEnJQ5J-5-jMP5JW-9reCkDqiD-n-s";
 
-const url = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1'  //notice that last letter is the page
+const url = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1'
 
 const options = {
     method: 'GET',
@@ -13,20 +13,17 @@ const options = {
   };
 
 
-
-
   let searchButton = document.getElementById('search');
 
   let searchInput = document.getElementById('searchInput')
 
   searchButton.addEventListener('click', function(event) {
 
-    //alert(searchInput.value)
 
     mainContainer.innerHTML = "";
     
 
-    if (searchInput.value.length != 0) {
+    if (searchInput.value.length !== 0) {
         searchMovies();
     }
     else {
@@ -37,9 +34,8 @@ const options = {
   });
 
 
-
   function searchMovies() {
-        //URL FOR SEARC
+        //URL FOR SEARCH
         const options1 = {
             method: 'GET',
             headers: {
@@ -48,9 +44,10 @@ const options = {
             }
           };
 
-          //'https://api.themoviedb.org/3/search/movie?query=SPIDERMAN&include_adult=false&language=en-US&page=1', options)
           dinamicURL = 'https://api.themoviedb.org/3/search/movie?query='+ searchInput.value +'&include_adult=false&language=en-US&page=1'
           console.log(searchInput.value)
+
+          /* call the generate cards with parameter of what you found*/
           fetch(dinamicURL, options1)
             .then(response => response.json())
             .then(data => {
@@ -60,17 +57,9 @@ const options = {
                    }
       
             
-            }) /* call the generate cards with parameter of what you found*/
+            }) 
 
   }
-
-
-
-
-
-
-
-//api have pages
 
 
   let currentPage = 1
@@ -90,17 +79,11 @@ function getMovies(pageNum) {
     for (let i = 0; i < data.results.length; i++ ) {
         generateCards(data.results[i]);   
     }
-    //alert('hi')
 
 }
 )
 }
-
-
-//eventHandler for when load more is clicked
-//create event lisener so that every click we call we will call getMovies again for the next page
-
-  
+ 
   const loadButton = document.getElementById('loadButton');
   
 
@@ -108,36 +91,6 @@ function getMovies(pageNum) {
     getMovies(++currentPage);
   });
 
-
-
-
-
-
-// const searchButton = document.getElementById('search')
-// searchButton.addEventListener('click', function() {
-//     let url = 'https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1'
-//     let urlSearch = 'https://api.themoviedb.org/3/search/' + movie + '?include_adult=false&language=en-US&page=1'
-//     fetch(, options)
-//         .then(response => response.json())
-//         .then(response => console.log(response))
-//         .catch(err => console.error(err));
-
-
-// })
-
-// function searchMovie() {
-//     const options = {
-//         method: 'GET',
-//         headers: {
-//           accept: 'application/json',
-//           Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNDExYzRmMjJkN2VmMzRhNWU1MmQwMGNlZjgzZDBlMSIsInN1YiI6IjY0ODIwNDg5YmYzMWYyMDExZDQyMTE0YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qDBwCjX6tmtAwMEnJQ5J-5-jMP5JW-9reCkDqiD-n-s'
-//         }
-//       };
-      
-// }
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const mainContainer = document.getElementById("movies")
 
@@ -164,17 +117,15 @@ function generateCards(movieObject) {
     averageContainer.classList.add('average')
     averageContainer.appendChild(star);
     averageContainer.appendChild(rating)
-    //document.body.appendChild(averageContainer)
 
     let image = document.createElement('img');
     image.src = "https://image.tmdb.org/t/p/w342" + movieObject.poster_path
-    //document.body.insertBefore(image, averageContainer)
+    image.alt = "Poster for the movie: " + movieObject.original_title //Accessibility feature
 
 
     let name = document.createElement('div')
     rating.classList.add('name');
     name.innerText = movieObject.original_title;
-    //document.body.insertBefore(name, averageContainer.nextSibling);
 
     let movie = document.createElement('section')
     movie.classList.add('movie')
@@ -183,7 +134,6 @@ function generateCards(movieObject) {
     movie.appendChild(name);
 
 
-    //const mainContainer = document.getElementById("movies") //did it outside
     mainContainer.appendChild(movie);
 
 
