@@ -59,7 +59,7 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 
 Add your response here
 
-Yes
+Yes, however could have learned more about js fetures and functionalities.
 
 - If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
 
