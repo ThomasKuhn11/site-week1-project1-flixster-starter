@@ -46,9 +46,10 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 
 `ADD_EMBEDDED_CODE_HERE`
 
-<a href="https://www.loom.com/share/a467d2585b0d42f1a516e127446ae214">
-    <p>Private Video - Watch Video</p>
-    <img style="max-width:300px;" src="https://cdn.loom.com/placeholders/private-video.gif">
+
+  <a href="https://www.loom.com/share/f92b6719be644161af0ad13a7f1f1cfb">
+    <p>Library | Loom - 11 June 2023 - Watch Video</p>
+    <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/f92b6719be644161af0ad13a7f1f1cfb-with-play.gif">
   </a>
 
 
